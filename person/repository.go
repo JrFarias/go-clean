@@ -1,15 +1,18 @@
 package person
 
 import (
+	"fmt"
+
 	"github.com/JrFarias/go-clean/common"
 )
 
-var person Person
 var error common.Error
 
 // RepositoryGetAll call database
 func RepositoryGetAll() ([]Person, common.Error) {
 	var person []Person
+	var error common.Error
+
 	if err := common.DB.Find(&person).Error; err != nil {
 		return person, common.ErrorMessage()["NoCustomer"]
 	}
@@ -19,6 +22,8 @@ func RepositoryGetAll() ([]Person, common.Error) {
 
 // RepositoryGetByID access db and get by id
 func RepositoryGetByID(id int) (Person, common.Error) {
+	var person Person
+
 	if err := common.DB.Where("id = ?", id).First(&person).Error; err != nil {
 		return person, common.ErrorMessage()["CustomerNotFound"]
 	}
@@ -31,6 +36,16 @@ func ResitoryCreate(person Person) (Person, common.Error) {
 	if err := common.DB.Create(&person).Error; err != nil {
 		return person, error
 	}
+
+	return person, error
+}
+
+// RepositoryUpdate update model
+func RepositoryUpdate(person Person) (Person, common.Error) {
+	if err := common.DB.Save(&person).Error; err != nil {
+		return person, error
+	}
+	fmt.Println("ano deu erro", person)
 
 	return person, error
 }

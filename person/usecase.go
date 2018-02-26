@@ -38,6 +38,7 @@ func UseCaseGetByID(context *gin.Context) {
 
 // UseCaseCreate create
 func UseCaseCreate(context *gin.Context) {
+	var person Person
 	context.BindJSON(&person)
 	personID, _ := strconv.ParseInt(strconv.FormatUint(person.ID, 10), 10, 64)
 	_, err := RepositoryGetByID(int(personID))
@@ -47,6 +48,23 @@ func UseCaseCreate(context *gin.Context) {
 		return
 	}
 
-	person, _ := ResitoryCreate(person)
+	newPerson, _ := ResitoryCreate(person)
+	context.JSON(http.StatusOK, newPerson)
+}
+
+// UseCaseUpdate update
+func UseCaseUpdate(context *gin.Context) {
+	var person Person
+	id, _ := strconv.Atoi(context.Params.ByName("id"))
+	context.BindJSON(&person)
+
+	oldPerson, err := RepositoryGetByID(id)
+
+	if err.Code != 0 {
+		context.AbortWithStatusJSON(http.StatusNotFound, err)
+		return
+	}
+	person.ID = oldPerson.ID
+
 	context.JSON(http.StatusOK, person)
 }

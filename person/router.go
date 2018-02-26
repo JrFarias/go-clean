@@ -17,5 +17,6 @@ type Person struct {
 func Router(route *gin.Engine) gin.IRoutes {
 	return route.Handle("GET", common.Prefix()+"/person", UseCaseGetAll).
 		Handle("GET", common.Prefix()+"/person/:id", UseCaseGetByID).
-		Handle("POST", common.Prefix()+"/person", UseCaseCreate)
+		Handle("POST", common.Prefix()+"/person", UseCaseCreate).
+		Handle("PUT", common.Prefix()+"/person/:id", UseCaseUpdate)
 }
