@@ -20,5 +20,5 @@ func main() {
 		context.JSON(http.StatusOK, time.Now())
 	})
 
-	router.Run(":3000")
+	router.Run(":3001")
 }
