@@ -2,16 +2,23 @@ package common
 
 import (
 	"log"
+	"time"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
-func DataBase() *gorm.DB {
+//DB global variable to access DB
+var DB *gorm.DB
+
+//DataBase function to open connection
+func DataBase() {
 	db, err := gorm.Open("sqlite3", "./gorm.db")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	return db
+	db.DB().SetMaxIdleConns(0)
+	db.DB().SetConnMaxLifetime(5 * time.Second)
+	DB = db
 }

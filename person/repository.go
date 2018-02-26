@@ -8,11 +8,8 @@ import (
 
 // RepositoryGetAll call database
 func RepositoryGetAll() []Person {
-	defer common.DataBase().Close()
-
-	common.DataBase().AutoMigrate(&Person{})
 	var person []Person
-	if err := common.DataBase().Find(&person).Error; err != nil {
+	if err := common.DB.Find(&person).Error; err != nil {
 		log.Fatal(err)
 	}
 
