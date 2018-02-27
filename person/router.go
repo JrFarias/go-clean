@@ -15,8 +15,8 @@ type Person struct {
 
 // Router get all routes from domain
 func Router(route *gin.Engine) gin.IRoutes {
-	return route.Handle("GET", common.Prefix()+"/person", UseCaseGetAll).
-		Handle("GET", common.Prefix()+"/person/:id", UseCaseGetByID).
-		Handle("POST", common.Prefix()+"/person", UseCaseCreate).
-		Handle("PUT", common.Prefix()+"/person/:id", UseCaseUpdate)
+	return route.Handle("GET", common.Prefix+"/person", ControllerGetAll).
+		Handle("GET", common.Prefix+"/person/:id", ControllerGetByID).
+		Handle("POST", common.Prefix+"/person", ControllerCreate).
+		Handle("PUT", common.Prefix+"/person/:id", ControllerUpdate)
 }

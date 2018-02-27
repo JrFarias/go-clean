@@ -1,9 +1,7 @@
 package common
 
 // Prefix at router
-func Prefix() string {
-	return "v1"
-}
+const Prefix = "v1"
 
 //Error struct
 type Error struct {
@@ -11,6 +9,7 @@ type Error struct {
 	Code    int    `json:"code"`
 }
 
+// ErrorMessage function to add default error messages
 func ErrorMessage() map[string]Error {
 	m := make(map[string]Error)
 

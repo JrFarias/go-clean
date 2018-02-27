@@ -1,8 +1,6 @@
 package person
 
 import (
-	"fmt"
-
 	"github.com/JrFarias/go-clean/common"
 )
 
@@ -45,7 +43,6 @@ func RepositoryUpdate(person Person) (Person, common.Error) {
 	if err := common.DB.Save(&person).Error; err != nil {
 		return person, error
 	}
-	fmt.Println("ano deu erro", person)
 
 	return person, error
 }
