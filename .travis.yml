@@ -1,0 +1,4 @@
+language: go
+script: go get github.com/jinzhu/gorm && go get github.com/gin-gonic/gin
+notifications:
+  email: false
