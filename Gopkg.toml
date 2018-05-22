@@ -9,3 +9,11 @@
 [[constraint]]
   name = "github.com/jinzhu/gorm"
   version = "1.0.0"
+
+
+[metadata.heroku]
+  root-package = "github.com/JrFarias/go-clean"
+  go-version = "go1.10.2"
+  ensure = "false"
+  install = [ "./cmd/...", "./foo" ]
+  additional-tools = ["github.com/jinzhu/gorm","github.com/gin-gonic/gin"]
